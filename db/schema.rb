@@ -13,10 +13,11 @@
 ActiveRecord::Schema.define(version: 20171108223322) do
 
   create_table "answers", force: :cascade do |t|
-    t.string "title"
-    t.text "boday"
+    t.text "body"
+    t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "comments", force: :cascade do |t|
