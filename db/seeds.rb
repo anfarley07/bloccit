@@ -1,5 +1,7 @@
 require 'random_data'
 
+Post.find_or_create_by(title: "Bohemian Rhapsody", body: "Scaramouche, scaramouche can you do the fandango? Thunderbolts and ligtning, very, very frighning.")
+
 # Creates seed Posts
 50.times do
     Post.create!(
@@ -11,6 +13,8 @@ end
 posts = Post.all
 
 # Creates seed Comments
+
+Comment.find_or_create_by(post_id: 51, body: "I'm just a poor boy, nobyd loves me. He's just a poor boy from a poor family.")
 
 100.times do
   Comment.create!(
