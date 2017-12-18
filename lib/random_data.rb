@@ -23,4 +23,11 @@ module RandomData
     letters.shuffle!
     letters[0, rand(3..8)].join
   end
+
+  def self.random_price
+    numbers = ('1'..'9').to_a
+    numbers.shuffle!
+    numbers[1, rand(2..4)].join
+  end
+
 end

@@ -39,12 +39,13 @@ RSpec.describe PostsController, type: :controller do
      end
 
      it "renders the #new view" do
+       get :new
        expect(response).to render_template :new
      end
 
      it "initates @post" do
        get :new
-       expect(assigns(:post)).not_to be_nill
+       expect(assigns(:post)).not_to be_nil
      end
    end
 
