@@ -30,4 +30,8 @@ module RandomData
     numbers[1, rand(2..4)].join
   end
 
+  def self.random_boolean
+    random_boolean = [true, false].sample
+  end
+
 end

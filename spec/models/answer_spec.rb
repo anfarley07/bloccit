@@ -1,7 +1,7 @@
-require 'rails_helper'
+rrequire 'rails_helper'
 
 RSpec.describe Answer, type: :model do
-  let(:question) { Question.create!(title: "New Question Title", body: "New Question Body", resolved: boolean) }
+  let(:question) { Question.create!(title: "New Question Title", body: "New Quetion Body", resolved: "True or False") }
   let(:answer) { Answer.create!(body: 'Answer Body', question: question) }
 
   describe "attributes" do

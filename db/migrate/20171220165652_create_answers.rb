@@ -8,5 +8,3 @@ class CreateAnswers < ActiveRecord::Migration[5.1]
     end
   end
 end
-
-rails g migration RenameBodyOnAnswers

@@ -4,7 +4,7 @@ class CreateQuestions < ActiveRecord::Migration[5.1]
       t.string :title
       t.text :body
       t.boolean :resolved
-      #adding comment so I can do a new commit
+
       t.timestamps
     end
   end

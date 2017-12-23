@@ -24,10 +24,17 @@ Comment.find_or_create_by(post_id: 51, body: "I'm just a poor boy, nobyd loves m
 end
 
 10.times do
-  Advertisement.create!(
+  Question.create!(
     title: RandomData.random_sentence,
     copy: RandomData.random_paragraph,
-    price: RandomData.random_price
+    price: RandomData.random_boolean
+  )
+end
+
+20.times do
+  Answer.create!(
+    question: questions.sample,
+    body: RandomData.random_paragraph
   )
 end
 
