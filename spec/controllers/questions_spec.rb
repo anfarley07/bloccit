@@ -94,7 +94,7 @@ RSpec.describe QuestionsController, type: :controller do
       new_body = RandomData.random_paragraph
       resolved = boolean
 
-      put :update, params: { id: my_quesiton.id, question: {title: new_title, body: new_body, resolved: new_resolved } }
+      put :update, params: { id: my_question.id, question: {title: new_title, body: new_body, resolved: new_resolved } }
 
       updated_question = assigns(:question)
       expect(updated_question.id).to eq my_question.id
