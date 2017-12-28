@@ -23,11 +23,13 @@ Comment.find_or_create_by(post_id: 51, body: "I'm just a poor boy, nobyd loves m
   )
 end
 
+questions = Question.all
+
 10.times do
   Question.create!(
     title: RandomData.random_sentence,
-    copy: RandomData.random_paragraph,
-    price: RandomData.random_boolean
+    body: RandomData.random_paragraph,
+    resolved: RandomData.random_boolean
   )
 end
 
@@ -41,4 +43,5 @@ end
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-puts "#{Advertisement.count} advertisements created"
+puts "#{Question.count} questions created"
+puts "#{Answer.count} answers created"

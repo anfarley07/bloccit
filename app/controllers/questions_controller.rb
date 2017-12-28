@@ -5,15 +5,15 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = question.find(params[:id])
+    @question = Question.find(params[:id])
   end
 
   def new
-    @question = question.new
+    @question = Question.new
   end
 
   def create
-    @question = question.new
+    @question = Question.new
     @question.title = params[:question][:title]
     @question.body = params[:question][:body]
     @question.resolved = params[:question][:resolved]
@@ -28,11 +28,11 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = question.find(params[:id])
+    @question = Question.find(params[:id])
   end
 
   def update
-    @question = question.find(params[:id])
+    @question = Question.find(params[:id])
     @question.title = params[:question][:title]
     @question.body = params[:question][:body]
     @question.resolved = params [:question][:resolved]
@@ -47,7 +47,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = question.find(params[:id])
+    @question = Question.find(params[:id])
 
     if @question.destroy
       flash[:notice] = "\"#{@question.title}\" was deleted successfully."

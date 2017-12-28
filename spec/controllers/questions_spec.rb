@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
-  let(:my_question) {Question.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: boolean)}
+  let(:my_question) {Question.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: RandomData.random_boolean)}
 
   describe "GET #index" do
     it "returns http success" do
@@ -51,16 +51,16 @@ RSpec.describe QuestionsController, type: :controller do
 
    describe "QUESTION create" do
       it "increases the number of Question by 1" do
-        expect{ question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: boolean } } }.to change(Question,:count).by(1)
+        expect{ question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: RandomData.random_boolean } } }.to change(Question,:count).by(1)
       end
 
       it "assigns the new question to @question" do
-        question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: boolean } }
+        question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: RandomData.random_boolean } }
         expect(assigns(:question)).to eq Question.last
       end
 
       it "redirects to the new question" do
-        question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: boolean } }
+        question :create, params: { question: { title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: RandomData.random_boolean } }
         expect(response).to redirect_to Question.last
       end
    end
@@ -72,7 +72,7 @@ RSpec.describe QuestionsController, type: :controller do
     end
 
     it "renders the #edit view" do
-      get :edit, params: { id: my_questiont.id }
+      get :edit, params: { id: my_question.id }
       expect(response).to render_template :edit
     end
 
@@ -108,7 +108,7 @@ RSpec.describe QuestionsController, type: :controller do
       new_body = RandomData.random_paragraph
       new_resolved = boolean
 
-      put :update, params: { id: my_questiont.id, question: {title: new_title, body: new_body, resolved: new_resolved } }
+      put :update, params: { id: my_question.id, question: {title: new_title, body: new_body, resolved: new_resolved } }
       expect(response).to redirect_to my_question
     end
   end
