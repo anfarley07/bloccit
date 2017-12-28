@@ -31,7 +31,7 @@ module RandomData
   end
 
   def self.random_boolean
-    random_boolean = [true, false].sample
+    [true, false].sample
   end
 
 end
