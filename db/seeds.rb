@@ -35,9 +35,9 @@ end
 
 #create advertisements
 10.times do
-  Advertisement.create!(
+  SponsoredPost.create!(
     title: RandomData.random_sentence,
-    copy: RandomData.random_paragraph,
+    body: RandomData.random_paragraph,
     price: RandomData.random_price
   )
 end
@@ -46,4 +46,4 @@ puts "Seed finished"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-puts "#{Advertisement.count} advertisements created"
+puts "#{SponsoredPost.count} advertisements created"
