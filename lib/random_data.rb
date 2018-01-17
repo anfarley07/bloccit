@@ -25,9 +25,7 @@ module RandomData
   end
 
   def self.random_price
-    numbers = ('1'..'9').to_a
-    numbers.shuffle!
-    numbers[1, rand(2..4)].join
+    rand(100)
   end
 
 end
