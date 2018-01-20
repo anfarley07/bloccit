@@ -10,7 +10,7 @@ class SponsoredPostsController < ApplicationController
   end
 
   def create
-    @sponsored_post = SponsredPost.new
+    @sponsored_post = SponsoredPost.new
     @sponsored_post.title = params[:sponsored_post][:title]
     @sponsored_post.body = params[:sponsored_post][:body]
     @sponsored_post.price = params[:sponsored_post][:price]
@@ -47,9 +47,9 @@ class SponsoredPostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @sponsored_post = SponsoredPost.find(params[:id])
 
-    if @post.destroy
+    if @sponsored_post.destroy
       flash[:notice] = "\"#{@sponsored_post.title}\" was deleted successfully."
       redirect_to @sponsored_post.topic
     else

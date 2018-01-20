@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-Rspec.describe SponsoredPostsController, type: :controller do
+RSpec.describe SponsoredPostsController, type: :controller do
   let(:my_topic) {Topic.create!(name: RandomData.random_sentence, description:RandomData.random_paragraph) }
 
   let(:my_sponsored_post) {my_topic.sponsored_posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price)}
@@ -30,7 +30,7 @@ Rspec.describe SponsoredPostsController, type: :controller do
 
     it "renders the #new view" do
       get :new, params: { topic_id: my_topic.id }
-      expect (response).to render_template :new
+      expect(response).to render_template :new
     end
 
     it "initiates @sponsored_post" do
@@ -41,7 +41,7 @@ Rspec.describe SponsoredPostsController, type: :controller do
 
   describe "POST create" do
     it "increases the number of SponsoredPost by 1" do
-      expect{ post :create, params: { topic_id: my_topic.id, sponsored_post: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price }}
+      expect { post :create, params: { topic_id: my_topic.id, sponsored_post: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price } } }.to change(SponsoredPost,:count).by(1)
     end
 
     it "assigns the new post to @post" do
@@ -50,14 +50,14 @@ Rspec.describe SponsoredPostsController, type: :controller do
     end
 
     it "redirects to the new post" do
-      post :create, params { topic_id: my_topic.id, sponsored_post: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price } }
+      post :create, params: { topic_id: my_topic.id, sponsored_post: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_price } }
       expect(response).to redirect_to [my_topic, SponsoredPost.last]
     end
   end
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit, params { topic_id: my_topic.id, id: my_sponsored_post.id }
+      get :edit, params: { topic_id: my_topic.id, id: my_sponsored_post.id }
     end
 
     it "renders the #edit view" do
@@ -74,8 +74,24 @@ Rspec.describe SponsoredPostsController, type: :controller do
       expect(sponsored_post_instance.body).to eq my_sponsored_post.body
       expect(sponsored_post_instance.price).to eq my_sponsored_post.price
     end
+  end
 
-    it "redirects to the updated sponsored_post"
+  describe "PUT update" do
+    it "updates sponsored_post with expected attributes" do
+      new_title = RandomData.random_sentence
+      new_body = RandomData.random_paragraph
+      new_price = RandomData.random_price
+
+      put :update, params: { topic_id: my_topic.id, id: my_sponsored_post.id, sponsored_post: { title: new_title, body: new_body, price: new_price} }
+
+      updated_sponsored_post = assigns(:sponsored_post)
+      expect(updated_sponsored_post.id).to eq my_sponsored_post.id
+      expect(updated_sponsored_post.title).to eq new_title
+      expect(updated_sponsored_post.body).to eq new_body
+      expect(updated_sponsored_post.price).to eq new_price
+    end
+
+    it "redirects to the updated sponsored_post" do
       new_title = RandomData.random_sentence
       new_body = RandomData.random_paragraph
       new_price = RandomData.random_price
@@ -87,7 +103,7 @@ Rspec.describe SponsoredPostsController, type: :controller do
 
   describe "DELETE destroy" do
     it "deletes the sponsored_post" do
-      delete: destroy, params: { topic_id: my_topic.id, id: my_sponsored_post.id }
+      delete :destroy, params: { topic_id: my_topic.id, id: my_sponsored_post.id }
       count = SponsoredPost.where({id: my_sponsored_post.id}).size
       expect(count).to eq 0
     end
