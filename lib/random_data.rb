@@ -25,7 +25,7 @@ module RandomData
   end
 
   def self.random_price
-    rand(100)
+    rand(20)
   end
 
 end
