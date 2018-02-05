@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   post 'users/confirm' => 'users#confirm'
 
+  post 'users/new' => 'users#new'
+
   root 'welcome#index'
 
 end

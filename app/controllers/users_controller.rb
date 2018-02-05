@@ -20,11 +20,8 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    if @user.yes
-      @user.create
-    else
-      flash.now[:alert] = "Your account was not created. Please try again."
-      render :new
-    end
+    @user = User.new
+    @user.name = params[:user][:name]
+    @user.email = params[:user][:email]
   end
 end
