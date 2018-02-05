@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   # Shoulda tests for name
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_length_of(:name).is_at_least(1) }
+  it { is_expected.to allow_value("Bloccit User").for(:name) }
 
   # Shoulda tests for email
   it { is_expected.to validate_presence_of(:email) }
@@ -20,7 +21,35 @@ RSpec.describe User, type: :model do
 
   describe "attributes" do
     it "Should have name and email attributes" do
-      expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com")
+     expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com")
+    end
+
+    it "Should capitalize first and last name" do
+      expect(user.name).to eq("Bloccit User")
+    end
+  end
+
+  describe "all caps user" do
+    let(:userWithAllCaps) { User.create!(name: "TEST USER", email: "userxyz@bloccit.com", password: "password")}
+
+    it "Should capitalize first and last name" do
+      expect(userWithAllCaps.name).to eq("Test User")
+    end
+  end
+
+  describe "all small user" do
+    let(:userWithAllSmall) { User.create!(name: "test user", email: "userabc@bloccit.com", password: "password")}
+
+    it "Should capitalize first and last name" do
+      expect(userWithAllSmall.name).to eq("Test User")
+    end
+  end
+
+  describe "single name user" do
+    let(:userWithSingle) { User.create!(name: "test", email: "userdef@bloccit.com", password: "password")}
+
+    it "Should capitalize first and last name" do
+      expect(userWithSingle.name).to eq("Test")
     end
   end
 

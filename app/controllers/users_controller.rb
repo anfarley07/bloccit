@@ -18,4 +18,13 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def confirm
+    if @user.yes
+      @user.create
+    else
+      flash.now[:alert] = "Your account was not created. Please try again."
+      render :new
+    end
+  end
 end
