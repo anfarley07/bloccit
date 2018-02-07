@@ -16,4 +16,9 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
- 
+
+ .avatar-image {
+   float: left;
+   padding-top: 5px;
+   padding-right: 10px;
+ }
