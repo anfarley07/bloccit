@@ -45,9 +45,16 @@ Comment.find_or_create_by(post_id: 51, body: "I'm just a poor boy, nobyd loves m
   )
 end
 
-user = User.first
-user.update_attributes!(
-  email: 'antithesisofpop@gmail.com',
+admin = User.create!(
+  name: 'Admin User',
+  email: 'admin@example.com',
+  password: 'helloworld',
+  role: 'admin'
+)
+
+member = User.create!(
+  name: 'Member User',
+  email: 'member@example.com',
   password: 'helloworld'
 )
 
