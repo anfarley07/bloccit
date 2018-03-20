@@ -68,4 +68,13 @@ class PostsController < ApplicationController
       redirect_to [post.topic, post]
     end
   end
+
+  def authorize_moderator
+    post = Post.find(params[:id])
+
+    unless current_user == post.user || current_user.moderator?
+      flash[:alert] = "You must be an admin or moderator to do that."
+      redirect_to [post.topic, post]
+    end
+  end
 end
