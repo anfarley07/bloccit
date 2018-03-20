@@ -106,7 +106,7 @@ RSpec.describe PostsController, type: :controller do
 
     describe "POST create" do
       it "increases the number of Post by 1" do
-        expect{ post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
+         expect{ post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
       end
 
       it "assigns the new post to @post" do
@@ -394,6 +394,7 @@ RSpec.describe PostsController, type: :controller do
        end
      end
 
+
      describe "GET new" do
        it "returns http success" do
          get :new, params: { topic_id: my_topic.id }
@@ -411,6 +412,7 @@ RSpec.describe PostsController, type: :controller do
        end
      end
 
+
      describe "POST create" do
        it "increases the number of Post by 1" do
          expect{ post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } } }.to change(Post,:count).by(1)
@@ -425,7 +427,7 @@ RSpec.describe PostsController, type: :controller do
          post :create, params: { topic_id: my_topic.id, post: { title: RandomData.random_sentence, body: RandomData.random_paragraph } }
          expect(response).to redirect_to [my_topic, Post.last]
        end
-     end
+    end
 
      describe "GET edit" do
        it "returns http success" do
