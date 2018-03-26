@@ -40,6 +40,7 @@ Comment.find_or_create_by(post_id: 51, body: "I'm just a poor boy, nobyd loves m
 
 100.times do
   Comment.create!(
+    user: users.sample,
     post: posts.sample,
     body: RandomData.random_paragraph
   )
