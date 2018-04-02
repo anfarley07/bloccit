@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
   before_action :authorize_user, only: [:destroy]
 
   def create
+    puts "Creating comment..."
+    p params
     @post = Post.find(params[:post_id])
     comment = @post.comments.new(comment_params)
     comment.user = current_user
